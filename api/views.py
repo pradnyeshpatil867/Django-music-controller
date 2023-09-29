@@ -1,5 +1,13 @@
-from django.shortcuts import render, HttpResponse
-
+from django.shortcuts import render
+from rest_framework import generics
+from .serializers import RoomSerializers
+from .models import Room
 # Create your views here.
-def main(request):
-    return HttpResponse('<h1>hello Django and react</h1>')
+
+#this will not just view room but also create the room
+
+#this is a view already setup to return to us all of the rooms
+class RoomView(generics.ListAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializers
+
